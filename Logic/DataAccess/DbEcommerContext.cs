@@ -16,6 +16,8 @@ namespace Logic.DataAccess
         }
 
         public virtual DbSet<Producto> Productos { get; set; }
+        public virtual DbSet<Categoria> Categgoria { get; set; }
         public virtual DbSet<Marca> Marca { get; set; }
+
     }
 }
