@@ -1,4 +1,6 @@
+using Core.Interfaces;
 using Logic.DataAccess;
+using Logic.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +27,7 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DbEcommerContext>(op => op.);
+            services.AddTransient<IProductoRepository, ProductoRepository>();
             services.AddControllers();
         }
 
