@@ -12,7 +12,8 @@ namespace Core.Entities
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int Stock { get; set; }
-        public int Marca { get; set; }
+        public int MarcaId { get; set; }
+        public Marca Marca { get; set; }
 
         [Column(TypeName="decimal(18,4)")]
         public decimal precio { get; set; }
