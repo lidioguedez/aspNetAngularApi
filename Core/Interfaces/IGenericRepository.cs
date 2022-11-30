@@ -10,6 +10,8 @@ namespace Core.Interfaces
     public interface IGenericRepository<T> where T : EntityBase
     {
         Task<T> GetById(int id);
+        Task<T> GetByIdWithSpec(ISpecification<T> spec);
+        Task<IReadOnlyList<T>> GetAllWithSpec(ISpecification<T> spec);
         Task<IReadOnlyList<T>> GetAll();
         Task Remove(T entity);
         Task Add(T entity);
