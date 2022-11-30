@@ -1,6 +1,8 @@
 using Core.Interfaces;
+using Core.Interfaces.Services;
 using Logic.DataAccess;
 using Logic.Repository;
+using Logic.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +31,14 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+
             services.AddDbContext<DbEcommerContext>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConection"));
             });
+
             services.AddTransient<IProductoRepository, ProductoRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IProductoService, ProductoServices>();
             services.AddControllers();
         }
 
