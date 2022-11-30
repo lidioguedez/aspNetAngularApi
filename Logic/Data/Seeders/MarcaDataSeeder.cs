@@ -14,7 +14,8 @@ namespace Logic.Data.Seeders
         {
             builder.HasData(
                 new { Id = 1, Nombre = "Marca Generica 1" },
-                new { Id = 2, Nombre = "Marca Generica 2" }
+                new { Id = 2, Nombre = "Marca Generica 2" },
+                new { Id = 3, Nombre = "Marca Generica 3" }
                 );
         }
     }
