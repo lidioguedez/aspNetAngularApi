@@ -23,7 +23,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _service.GetAll());
+            return Ok(await _service.GetAllWithSpec("",0,0));
         }
 
         [HttpGet("{id}")]

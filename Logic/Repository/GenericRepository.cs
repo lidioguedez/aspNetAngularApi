@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Logic.DataAccess;
+using Logic.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,19 @@ namespace Logic.Repository
             return await _db.ToListAsync();
         }
 
+        public virtual async Task<IReadOnlyList<T>> GetAllWithSpec(ISpecification<T> spec)
+        {
+            return await this.AppliSpecification(spec).ToListAsync();
+        }
+
         public virtual async Task<T> GetById(int id)
         {
             return await _db.FirstOrDefaultAsync(e => e.Id == id); ;
+        }
+
+        public virtual async Task<T> GetByIdWithSpec(ISpecification<T> spec)
+        {
+            return await AppliSpecification(spec).FirstOrDefaultAsync();
         }
 
         public virtual async Task Remove(T entity)
@@ -43,6 +54,11 @@ namespace Logic.Repository
         public virtual async Task Update(T entity)
         {
             _db.Update(entity);
+        }
+
+        private IQueryable<T> AppliSpecification(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_db.AsQueryable(), spec);
         }
 
     }

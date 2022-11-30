@@ -1,8 +1,10 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Core.Interfaces.Services;
+using Core.Specifications;
 using Logic.DataAccess;
 using Logic.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,5 +50,18 @@ namespace Logic.Services
         {
             await _uow.saveChanges();
         }
+
+        public async Task<Producto> GetByIdWithSpec(string? name, int? marca, int? categoria)
+        {
+            var spec = new ProductoSpecifications(name, marca, categoria);
+            return await _uow.ProductoRepository.GetByIdWithSpec(spec);
+        }
+
+        public async Task<IReadOnlyList<Producto>> GetAllWithSpec(string? name, int? marca, int? categoria)
+        {
+            var spec = new ProductoSpecifications(name, marca, categoria);
+            return await _uow.ProductoRepository.GetAllWithSpec(spec);
+        }
+
     }
 }
