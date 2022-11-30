@@ -1,11 +1,8 @@
 ﻿using Core.Entities;
+using Logic.Data.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Logic.Data.Configuration
 {
@@ -13,6 +10,8 @@ namespace Logic.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Producto> builder)
         {
+            ProductoDataSeeder.ProductoDataSeed(builder);
+
             builder.Property(p => p.Nombre).IsRequired().HasMaxLength(250);
             builder.Property(p => p.Descripcion).IsRequired().HasMaxLength(500);
             builder.Property(p => p.imagen).HasMaxLength(1000);
