@@ -20,27 +20,27 @@ namespace Logic.Repository
         }
 
 
-        public async Task Add(T entity)
+        public virtual async Task Add(T entity)
         {
             await _db.AddAsync(entity);
         }
 
-        public async Task<IReadOnlyList<T>> GetAll()
+        public virtual async Task<IReadOnlyList<T>> GetAll()
         {
             return await _db.ToListAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
             return await _db.FirstOrDefaultAsync(e => e.Id == id); ;
         }
 
-        public async Task Remove(T entity)
+        public virtual async Task Remove(T entity)
         {
              _db.Remove(entity); ;
         }
 
-        public async Task Update(T entity)
+        public virtual async Task Update(T entity)
         {
             _db.Update(entity);
         }
