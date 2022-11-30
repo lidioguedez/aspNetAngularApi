@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using Core.Entities;
+using Core.Interfaces;
 using Logic.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Logic.DataAccess
     public class UnitOfWork : IUnitOfWork
     {
         private IProductoRepository _productoRepository;
+        private IGenericRepository<Marca> _marcaRepository;
+        private IGenericRepository<Categoria> _categoriaRepository;
         private DbEcommerContext _dbContext;
 
         public UnitOfWork(DbEcommerContext dbContext)
@@ -23,6 +26,22 @@ namespace Logic.DataAccess
             get
             {
                 return _productoRepository = _productoRepository ?? new ProductoRepository(_dbContext);
+            }
+        }
+
+        public IGenericRepository<Marca> MarcaRepository
+        {
+            get
+            {
+                return _marcaRepository = _marcaRepository ?? new GenericRepository<Marca>(_dbContext);
+            }
+        }
+
+        public IGenericRepository<Categoria> CategoriaRepository
+        {
+            get
+            {
+                return _categoriaRepository = _categoriaRepository ?? new GenericRepository<Categoria>(_dbContext);
             }
         }
 
