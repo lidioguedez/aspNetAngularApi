@@ -2,7 +2,7 @@
 
 namespace Logic.Data.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace Logic.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Nombre = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,7 +25,7 @@ namespace Logic.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Nombre = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,6 +62,41 @@ namespace Logic.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Categgoria",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Categoria Uno" },
+                    { 2, "Categoria Dos" },
+                    { 3, "Categoria Tres" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Marca",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Marca Generica 1" },
+                    { 2, "Marca Generica 2" },
+                    { 3, "Marca Generica 3" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "Id", "CategoriaId", "Descripcion", "MarcaId", "Nombre", "Stock", "imagen", "precio" },
+                values: new object[] { 1, 1, "Descripcion Generica 1", 1, "Producto Generico 1", 5, "https://localhost/imagesn/imagen1.jpg", 152.45m });
+
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "Id", "CategoriaId", "Descripcion", "MarcaId", "Nombre", "Stock", "imagen", "precio" },
+                values: new object[] { 2, 2, "Descripcion Generica 2", 2, "Producto Generico 2", 5, "https://localhost/imagesn/imagen2.jpg", 60.3m });
+
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "Id", "CategoriaId", "Descripcion", "MarcaId", "Nombre", "Stock", "imagen", "precio" },
+                values: new object[] { 3, 3, "Descripcion Generica 3", 3, "Producto Generico 3", 5, "https://localhost/imagesn/imagen3.jpg", 200m });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_CategoriaId",

@@ -26,11 +26,29 @@ namespace Logic.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categgoria");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Categoria Uno"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Categoria Dos"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Categoria Tres"
+                        });
                 });
 
             modelBuilder.Entity("Core.Entities.Marca", b =>
@@ -41,11 +59,29 @@ namespace Logic.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Marca");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Marca Generica 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Marca Generica 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Marca Generica 3"
+                        });
                 });
 
             modelBuilder.Entity("Core.Entities.Producto", b =>
@@ -79,7 +115,7 @@ namespace Logic.Data.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<decimal>("precio")
-                        .HasColumnType("decimal()18,2");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -88,6 +124,41 @@ namespace Logic.Data.Migrations
                     b.HasIndex("MarcaId");
 
                     b.ToTable("Productos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoriaId = 1,
+                            Descripcion = "Descripcion Generica 1",
+                            MarcaId = 1,
+                            Nombre = "Producto Generico 1",
+                            Stock = 5,
+                            imagen = "https://localhost/imagesn/imagen1.jpg",
+                            precio = 152.45m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoriaId = 2,
+                            Descripcion = "Descripcion Generica 2",
+                            MarcaId = 2,
+                            Nombre = "Producto Generico 2",
+                            Stock = 5,
+                            imagen = "https://localhost/imagesn/imagen2.jpg",
+                            precio = 60.3m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoriaId = 3,
+                            Descripcion = "Descripcion Generica 3",
+                            MarcaId = 3,
+                            Nombre = "Producto Generico 3",
+                            Stock = 5,
+                            imagen = "https://localhost/imagesn/imagen3.jpg",
+                            precio = 200m
+                        });
                 });
 
             modelBuilder.Entity("Core.Entities.Producto", b =>
