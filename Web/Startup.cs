@@ -1,6 +1,8 @@
+using AutoMapper;
 using Core.Interfaces;
 using Core.Interfaces.Services;
 using Logic.DataAccess;
+using Logic.Helpers;
 using Logic.Repository;
 using Logic.Services;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +32,7 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 
             services.AddDbContext<DbEcommerContext>(opt => {

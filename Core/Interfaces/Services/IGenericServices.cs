@@ -11,7 +11,7 @@ namespace Core.Interfaces.Services
     {
         Task<T> GetById(int id);
         Task<IReadOnlyList<T>> GetAll();
-        Task<T> GetByIdWithSpec(string? name, int? marca, int? categoria);
+        Task<T> GetByIdWithSpec(int id);
         Task<IReadOnlyList<T>> GetAllWithSpec(string? name, int? marca, int? categoria);
         Task Remove(T entity);
         Task Add(T entity);
