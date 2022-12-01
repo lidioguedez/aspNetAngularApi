@@ -51,9 +51,9 @@ namespace Logic.Services
             await _uow.saveChanges();
         }
 
-        public async Task<Producto> GetByIdWithSpec(string? name, int? marca, int? categoria)
+        public async Task<Producto> GetByIdWithSpec(int id)
         {
-            var spec = new ProductoSpecifications(name, marca, categoria);
+            var spec = new ProductoSpecifications(id);
             return await _uow.ProductoRepository.GetByIdWithSpec(spec);
         }
 
