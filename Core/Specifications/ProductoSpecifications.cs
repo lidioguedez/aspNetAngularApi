@@ -10,10 +10,7 @@ namespace Core.Specifications
     public class ProductoSpecifications : BaseSpecification<Producto>
     {
         public ProductoSpecifications(string? name, int? marca, int? categoria)
-            : base (x => (string.IsNullOrEmpty(name) || x.Nombre.Contains(name)) &&
-                         (string.IsNullOrEmpty(name) || x.Descripcion.Contains(name)) &&
-                         (marca.HasValue && x.MarcaId==marca) &&
-                         (categoria.HasValue || x.CategoriaId==categoria))
+            : base ()
         {
             AddInclude(p => p.Marca);
             AddInclude(p => p.Categoria);
